@@ -8,6 +8,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
     [System.Serializable]
     public class PlayerInfo
     {
+        // public PushAgentEscape Agent;
         public PushAgentEscape Agent;
         [HideInInspector]
         public Vector3 StartingPos;
@@ -96,7 +97,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
             item.Rb = item.Agent.GetComponent<Rigidbody>();
             item.Col = item.Agent.GetComponent<Collider>();
             // Add to team manager
-            m_AgentGroup.RegisterAgent(item.Agent);
+            // m_AgentGroup.RegisterAgent(item.Agent);
         }
         foreach (var item in DragonsList)
         {
@@ -115,7 +116,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
         m_ResetTimer += 1;
         if (m_ResetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
         {
-            m_AgentGroup.GroupEpisodeInterrupted();
+            // m_AgentGroup.GroupEpisodeInterrupted();
             ResetScene();
         }
     }
@@ -125,7 +126,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
         m_NumberOfRemainingPlayers--;
         if (m_NumberOfRemainingPlayers == 0 || agent.IHaveAKey)
         {
-            m_AgentGroup.EndGroupEpisode();
+            // m_AgentGroup.EndGroupEpisode();
             ResetScene();
         }
         else
@@ -136,11 +137,11 @@ public class DungeonEscapeEnvController : MonoBehaviour
 
     public void UnlockDoor()
     {
-        m_AgentGroup.AddGroupReward(1f);
+        // m_AgentGroup.AddGroupReward(1f);
         StartCoroutine(GoalScoredSwapGroundMaterial(m_PushBlockSettings.goalScoredMaterial, 0.5f));
 
         print("Unlocked Door");
-        m_AgentGroup.EndGroupEpisode();
+        // m_AgentGroup.EndGroupEpisode();
 
         ResetScene();
     }
@@ -196,7 +197,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
 
     public void BaddieTouchedBlock()
     {
-        m_AgentGroup.EndGroupEpisode();
+        // m_AgentGroup.EndGroupEpisode();
 
         // Swap ground material for a bit to indicate we scored.
         StartCoroutine(GoalScoredSwapGroundMaterial(m_PushBlockSettings.failMaterial, 0.5f));
@@ -234,7 +235,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
             item.Agent.MyKey.SetActive(false);
             item.Agent.IHaveAKey = false;
             item.Agent.gameObject.SetActive(true);
-            m_AgentGroup.RegisterAgent(item.Agent);
+            // m_AgentGroup.RegisterAgent(item.Agent);
         }
 
         //Reset Key

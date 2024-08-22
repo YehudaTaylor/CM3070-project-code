@@ -1,81 +1,119 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
-using Unity.MLAgents.Actuators;
 
-public class PushAgentEscape : Agent
+using NPBehave;
+
+
+//BT version attempt 
+public class PushAgentEscape : MonoBehaviour
 {
-
     public GameObject MyKey; //my key gameobject. will be enabled when key picked up.
     public bool IHaveAKey; //have i picked up a key
     private PushBlockSettings m_PushBlockSettings;
     private Rigidbody m_AgentRb;
     private DungeonEscapeEnvController m_GameController;
 
-    public override void Initialize()
+    //npbehave 
+    private Blackboard sharedBlackboard;
+    private Blackboard ownBlackboard;
+    private Root behaviorTree;
+
+    // Start is called before the first frame update
+    void Start()
     {
         m_GameController = GetComponentInParent<DungeonEscapeEnvController>();
         m_AgentRb = GetComponent<Rigidbody>();
         m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
         MyKey.SetActive(false);
         IHaveAKey = false;
+
+        //the following code is adapted from npbehave swarm-ai example
+        sharedBlackboard = UnityContext.GetSharedBlackboard("multi-agent-bt-ai");
+
+        // create a new blackboard instance for this ai instance, parenting it to the sharedBlackboard.
+        // This way we can also access shared values through the own blackboard.
+        ownBlackboard = new Blackboard(sharedBlackboard, UnityContext.GetClock());
+
+        // create the behaviourTree
+        behaviorTree = CreateBehaviourTree();
+
+        // start the behaviour tree
+        behaviorTree.Start();
     }
 
-    public override void OnEpisodeBegin()
+
+    /// npbehave exampleswarmai
+    private Root CreateBehaviourTree()
     {
-        MyKey.SetActive(false);
-        IHaveAKey = false;
+        return new Root(ownBlackboard,
+
+            // Update values in the blackboards every 125 milliseconds
+            new Service(0.125f, UpdateBlackboards,
+                    new Selector(
+                        new BlackboardCondition("agentCanMove", Operator.IS_EQUAL, true, Stops.BOTH,
+                        new Sequence(
+                            new Action(() =>
+                            {
+                                if (sharedBlackboard.Get<Vector3>("dragonPosition") != null)
+                                {
+                                    MoveAgentToDragon(sharedBlackboard.Get<Vector3>("dragonPosition"));
+                                }
+                            })
+                            { Label = "Move to dragon position" }
+                        )
+                        )
+                    )
+                )
+        );
     }
 
-    public override void CollectObservations(VectorSensor sensor)
+    private void UpdateBlackboards()
     {
-        sensor.AddObservation(IHaveAKey);
+        // randomly switch the blackboard value
+        if (Time.frameCount % 17 == 0)
+        {
+            ownBlackboard["agentCanMove"] = false;
+        }
+        else
+        {
+            ownBlackboard["agentCanMove"] = true;
+        }
+
+        //add/update the dragon Transform to the shared blackboard
+        sharedBlackboard["dragonT"] = m_GameController.DragonsList[0].T;
+
+        // update the dragon position
+        if (m_GameController.DragonsList[0].T)
+        {
+            sharedBlackboard["dragonPosition"] = m_GameController.DragonsList[0].T.position;
+        }
     }
 
-    /// <summary>
-    /// Moves the agent according to the selected action.
-    /// </summary>
-    public void MoveAgent(ActionSegment<int> act)
+    // move the agent towards the dragons position
+    public void MoveAgentToDragon(Vector3 vec)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, vec, Time.deltaTime * 1f);
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        // MoveAgent();        
+    }
+
+    public void MoveAgent()
     {
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
+        dirToGo = transform.forward * 1f;
 
-        var action = act[0];
-
-        switch (action)
-        {
-            case 1:
-                dirToGo = transform.forward * 1f;
-                break;
-            case 2:
-                dirToGo = transform.forward * -1f;
-                break;
-            case 3:
-                rotateDir = transform.up * 1f;
-                break;
-            case 4:
-                rotateDir = transform.up * -1f;
-                break;
-            case 5:
-                dirToGo = transform.right * -0.75f;
-                break;
-            case 6:
-                dirToGo = transform.right * 0.75f;
-                break;
-        }
         transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
         m_AgentRb.AddForce(dirToGo * m_PushBlockSettings.agentRunSpeed,
             ForceMode.VelocityChange);
     }
 
-    /// <summary>
-    /// Called every step of the engine. Here the agent takes an action.
-    /// </summary>
-    public override void OnActionReceived(ActionBuffers actionBuffers)
-    {
-        // Move the agent using the action.
-        MoveAgent(actionBuffers.DiscreteActions);
-    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -109,27 +147,6 @@ public class PushAgentEscape : Agent
             MyKey.SetActive(true);
             IHaveAKey = true;
             col.gameObject.SetActive(false);
-        }
-    }
-
-    public override void Heuristic(in ActionBuffers actionsOut)
-    {
-        var discreteActionsOut = actionsOut.DiscreteActions;
-        if (Input.GetKey(KeyCode.D))
-        {
-            discreteActionsOut[0] = 3;
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            discreteActionsOut[0] = 1;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            discreteActionsOut[0] = 4;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            discreteActionsOut[0] = 2;
         }
     }
 }
