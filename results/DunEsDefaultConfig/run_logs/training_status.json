@@ -1,0 +1,65 @@
+{
+    "DungeonEscape": {
+        "checkpoints": [
+            {
+                "steps": 2499984,
+                "file_path": "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-2499984.onnx",
+                "reward": 0.0,
+                "creation_time": 1724771465.453591,
+                "auxillary_file_paths": [
+                    "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-2499984.pt"
+                ]
+            },
+            {
+                "steps": 2999945,
+                "file_path": "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-2999945.onnx",
+                "reward": null,
+                "creation_time": 1724772712.5694191,
+                "auxillary_file_paths": [
+                    "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-2999945.pt"
+                ]
+            },
+            {
+                "steps": 3499946,
+                "file_path": "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-3499946.onnx",
+                "reward": null,
+                "creation_time": 1724773693.8883264,
+                "auxillary_file_paths": [
+                    "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-3499946.pt"
+                ]
+            },
+            {
+                "steps": 3999975,
+                "file_path": "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-3999975.onnx",
+                "reward": null,
+                "creation_time": 1724775627.3638382,
+                "auxillary_file_paths": [
+                    "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-3999975.pt"
+                ]
+            },
+            {
+                "steps": 4492118,
+                "file_path": "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-4492118.onnx",
+                "reward": null,
+                "creation_time": 1724781727.5583522,
+                "auxillary_file_paths": [
+                    "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-4492118.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4492118,
+            "file_path": "results/DunEsDefaultConfig/DungeonEscape.onnx",
+            "reward": null,
+            "creation_time": 1724781727.5583522,
+            "auxillary_file_paths": [
+                "results/DunEsDefaultConfig/DungeonEscape/DungeonEscape-4492118.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.3.0"
+    }
+}
