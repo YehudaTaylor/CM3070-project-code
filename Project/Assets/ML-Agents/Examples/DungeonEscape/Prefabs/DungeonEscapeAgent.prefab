@@ -747,6 +747,7 @@ GameObject:
   - component: {fileID: 4570231187053985045}
   - component: {fileID: 8910333024216141797}
   - component: {fileID: 7100891525901242114}
+  - component: {fileID: 7460448390416080019}
   m_Layer: 0
   m_Name: DungeonEscapeAgent
   m_TagString: agent
@@ -918,6 +919,22 @@ MonoBehaviour:
     UseJointPositionsAndAngles: 0
     UseJointForces: 0
   sensorName: RBSensor
+--- !u!114 &7460448390416080019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828233698206621445}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b6042bc9a5d4aa58d931eae49442e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
 --- !u!1 &4828344911005358243
 GameObject:
   m_ObjectHideFlags: 0
