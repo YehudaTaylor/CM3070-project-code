@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.MLAgents;
+// using Unity.MLAgents;
 using UnityEngine;
 
 public class DungeonEscapeEnvController : MonoBehaviour
@@ -70,17 +70,18 @@ public class DungeonEscapeEnvController : MonoBehaviour
     private int m_NumberOfRemainingPlayers;
     public GameObject Key;
     public GameObject Tombstone;
-    private SimpleMultiAgentGroup m_AgentGroup;
+    // private SimpleMultiAgentGroup m_AgentGroup;
     void Start()
     {
-
+        
         // Get the ground's bounds
         areaBounds = ground.GetComponent<Collider>().bounds;
         // Get the ground renderer so we can change the material when a goal is scored
         m_GroundRenderer = ground.GetComponent<Renderer>();
         // Starting material
         m_GroundMaterial = m_GroundRenderer.material;
-        m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
+        // m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
+        m_PushBlockSettings = Object.FindFirstObjectByType<PushBlockSettings>();
 
         //Reset Players Remaining
         m_NumberOfRemainingPlayers = AgentsList.Count;
@@ -89,7 +90,7 @@ public class DungeonEscapeEnvController : MonoBehaviour
         Key.SetActive(false);
 
         // Initialize TeamManager
-        m_AgentGroup = new SimpleMultiAgentGroup();
+        // m_AgentGroup = new SimpleMultiAgentGroup();
         foreach (var item in AgentsList)
         {
             item.StartingPos = item.Agent.transform.position;

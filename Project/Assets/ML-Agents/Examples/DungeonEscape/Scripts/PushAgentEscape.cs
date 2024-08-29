@@ -24,7 +24,8 @@ public class PushAgentEscape : MonoBehaviour
     {
         m_GameController = GetComponentInParent<DungeonEscapeEnvController>();
         m_AgentRb = GetComponent<Rigidbody>();
-        m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
+        // m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
+        m_PushBlockSettings = Object.FindFirstObjectByType<PushBlockSettings>();
         MyKey.SetActive(false);
         IHaveAKey = false;
 
@@ -40,29 +41,49 @@ public class PushAgentEscape : MonoBehaviour
 
         // start the behaviour tree
         behaviorTree.Start();
+
+        setInitialBlackboardValues();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // MoveAgent();        
     }
 
 
-    /// npbehave exampleswarmai
+
+
+    /// based on npbehave exampleswarmai
     private Root CreateBehaviourTree()
     {
         return new Root(ownBlackboard,
 
+            
             // Update values in the blackboards every 125 milliseconds
             new Service(0.125f, UpdateBlackboards,
                     new Selector(
-                        new BlackboardCondition("agentCanMove", Operator.IS_EQUAL, true, Stops.BOTH,
+                        new BlackboardCondition("agentCanMove", Operator.IS_EQUAL, true, Stops.NONE,
                         new Sequence(
                             new Action(() =>
                             {
-                                if (sharedBlackboard.Get<Vector3>("dragonPosition") != null)
+                                if (sharedBlackboard.Get<Vector3>("dragonPosition") != null && (sharedBlackboard.Get<bool>("isKeyPickedUp") != true))
                                 {
                                     MoveAgentToDragon(sharedBlackboard.Get<Vector3>("dragonPosition"));
                                 }
                             })
                             { Label = "Move to dragon position" }
                         )
-                        )
+                        ),
+                        new BlackboardCondition("isKeyPickedUp", Operator.IS_EQUAL, true, Stops.NONE,
+                        new Sequence(
+                            new Action(() => {
+                                if (sharedBlackboard.Get<Vector3>("doorPosition") != null)
+                                {
+                                    moveAgentTo(sharedBlackboard.Get<Vector3>("doorPosition"));
+                                }
+                            }) {Label = "Move agent to exit"}
+                        ))
                     )
                 )
         );
@@ -74,6 +95,9 @@ public class PushAgentEscape : MonoBehaviour
         if (Time.frameCount % 17 == 0)
         {
             ownBlackboard["agentCanMove"] = false;
+
+            //for debugging
+            // Debug.Log("number of agents in shared blackboard: " + sharedBlackboard.Get<int>("numberOfAgents"));
         }
         else
         {
@@ -84,7 +108,27 @@ public class PushAgentEscape : MonoBehaviour
         sharedBlackboard["dragonT"] = m_GameController.DragonsList[0].T;
 
         // update the dragon position
-        if (m_GameController.DragonsList[0].T)
+        getDragonPosition();
+    }
+
+    //=== start my code ===//
+
+    //set values for initial state
+    private void setInitialBlackboardValues(){
+        sharedBlackboard["isDragonAlive"] = true;
+
+        sharedBlackboard["isKeyPickedUp"] = false;
+
+        //for debugging purposes
+        sharedBlackboard["numberOfAgents"] = sharedBlackboard.Get<int>("numberOfAgents") + 1;
+
+        getDoorPosition();
+    }
+
+    //get the dragons position
+    private void getDragonPosition(){
+        //check if dragon is in game
+        if (m_GameController.DragonsList[0].T && (sharedBlackboard.Get<bool>("isDragonAlive") == true))
         {
             sharedBlackboard["dragonPosition"] = m_GameController.DragonsList[0].T.position;
         }
@@ -96,24 +140,39 @@ public class PushAgentEscape : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, vec, Time.deltaTime * 1f);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        // MoveAgent();        
+    // move agent to given vector location
+    private void moveAgentTo(Vector3 pos){
+        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * 50f);
     }
 
-    public void MoveAgent()
-    {
-        var dirToGo = Vector3.zero;
-        var rotateDir = Vector3.zero;
-        dirToGo = transform.forward * 1f;
-
-        transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
-        m_AgentRb.AddForce(dirToGo * m_PushBlockSettings.agentRunSpeed,
-            ForceMode.VelocityChange);
+    //position for agents to escape to
+    private void getDoorPosition(){
+        sharedBlackboard["doorPosition"] = GameObject.FindGameObjectWithTag("lock").transform.position;
     }
 
+    //get dragon killed position
+    private void getDragonKilledPosition(Vector3 lastPos){
+        sharedBlackboard["dragonKilledPosition"] = lastPos;
+    }
+
+    //update dragon game participation status
+    private void updateDragonLifeStatus(){
+        sharedBlackboard["isDragonAlive"] = false;
+    }
+
+    // let other agents know key has been collected
+    private void updateAgentHasKeyStatus(){
+        sharedBlackboard["isKeyPickedUp"] = true;
+    }
+
+    //reset blackboard values when agents escape
+    private void resetBlackboardValues()
+    {
+        sharedBlackboard["isDragonAlive"] = true;
+        sharedBlackboard["isKeyPickedUp"] = false;
+    }
+
+    //=== end my code ===//
 
     void OnCollisionEnter(Collision col)
     {
@@ -124,6 +183,9 @@ public class PushAgentEscape : MonoBehaviour
                 MyKey.SetActive(false);
                 IHaveAKey = false;
                 m_GameController.UnlockDoor();
+
+                //update blackboard for next iteration of game
+                resetBlackboardValues();
             }
         }
         if (col.transform.CompareTag("dragon"))
@@ -131,6 +193,17 @@ public class PushAgentEscape : MonoBehaviour
             m_GameController.KilledByBaddie(this, col);
             MyKey.SetActive(false);
             IHaveAKey = false;
+
+            //my code: 
+            //update dragons postion for key location 
+            // getDragonKilledPosition(col.transform.position);
+            getDragonKilledPosition(MyKey.transform.position);
+
+            //get the door position for agents to move towards after collecting the key
+            getDoorPosition();
+
+            //update blackboard that dragon has been killed
+            updateDragonLifeStatus();
         }
         if (col.transform.CompareTag("portal"))
         {
@@ -147,6 +220,10 @@ public class PushAgentEscape : MonoBehaviour
             MyKey.SetActive(true);
             IHaveAKey = true;
             col.gameObject.SetActive(false);
+
+            //update other agents that key has been picked up
+            updateAgentHasKeyStatus();
         }
     }
+
 }
