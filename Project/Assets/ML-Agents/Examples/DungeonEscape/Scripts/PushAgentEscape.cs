@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using NPBehave;
+using System.IO;
 
+// for referencing
+// smc = Start of my code. emc = end of my code.
 
-//BT version attempt 
 public class PushAgentEscape : MonoBehaviour
 {
     public GameObject MyKey; //my key gameobject. will be enabled when key picked up.
@@ -75,6 +77,7 @@ public class PushAgentEscape : MonoBehaviour
                             { Label = "Move to dragon position" }
                         )
                         ),
+                        //smc
                         new BlackboardCondition("isKeyPickedUp", Operator.IS_EQUAL, true, Stops.NONE,
                         new Sequence(
                             new Action(() => {
@@ -85,12 +88,14 @@ public class PushAgentEscape : MonoBehaviour
                             }) {Label = "Move agent to exit"}
                         ))
                     )
+                    //emc
                 )
         );
     }
 
     private void UpdateBlackboards()
     {
+        // smc
         // randomly switch the blackboard value
         if (Time.frameCount % 17 == 0)
         {
@@ -109,6 +114,7 @@ public class PushAgentEscape : MonoBehaviour
 
         // update the dragon position
         getDragonPosition();
+        //emc
     }
 
     //=== start my code ===//
@@ -172,6 +178,29 @@ public class PushAgentEscape : MonoBehaviour
         sharedBlackboard["isKeyPickedUp"] = false;
     }
 
+
+    [System.Serializable]
+    public class JSONGameMetrics
+    {
+        public float time;
+        public float dragonKilledTime;
+        public float agentPickedKeyTime;
+        public float agentExitTime;
+        
+    }
+
+    JSONGameMetrics jsonObject = new JSONGameMetrics();
+
+
+    private void writeToFile(){
+        //current simulation time
+        jsonObject.time = Time.time;
+        
+        string json = JsonUtility.ToJson(jsonObject);
+
+        File.AppendAllText("/home/yehuda/Desktop/Temp/Unity/json-file-tests/test.json", json.ToString());
+    }
+
     //=== end my code ===//
 
     void OnCollisionEnter(Collision col)
@@ -184,8 +213,16 @@ public class PushAgentEscape : MonoBehaviour
                 IHaveAKey = false;
                 m_GameController.UnlockDoor();
 
+                //smc
+                // set time first agent exits
+                jsonObject.agentExitTime = Time.time;
+
                 //update blackboard for next iteration of game
                 resetBlackboardValues();
+
+                //save JSON data to file
+                writeToFile();
+                //emc
             }
         }
         if (col.transform.CompareTag("dragon"))
@@ -194,7 +231,7 @@ public class PushAgentEscape : MonoBehaviour
             MyKey.SetActive(false);
             IHaveAKey = false;
 
-            //my code: 
+            //smc
             //update dragons postion for key location 
             // getDragonKilledPosition(col.transform.position);
             getDragonKilledPosition(MyKey.transform.position);
@@ -204,6 +241,11 @@ public class PushAgentEscape : MonoBehaviour
 
             //update blackboard that dragon has been killed
             updateDragonLifeStatus();
+
+
+            // set time dragon killed for evaluation
+            jsonObject.dragonKilledTime = Time.time;
+            //emc
         }
         if (col.transform.CompareTag("portal"))
         {
@@ -221,8 +263,13 @@ public class PushAgentEscape : MonoBehaviour
             IHaveAKey = true;
             col.gameObject.SetActive(false);
 
+            //smc
             //update other agents that key has been picked up
             updateAgentHasKeyStatus();
+
+            // time agent picked up key (after dragon has been killed)
+            jsonObject.agentPickedKeyTime = Time.time;      
+            //emc      
         }
     }
 
