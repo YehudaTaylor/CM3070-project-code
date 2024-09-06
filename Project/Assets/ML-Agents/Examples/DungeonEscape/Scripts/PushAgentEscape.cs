@@ -2,6 +2,23 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System.IO;
+// for referencing
+// smc = Start of my code. emc = end of my code.
+
+/// <summary>
+/// adapted from: https://docs.unity3d.com/2020.1/Documentation/Manual/JSONSerialization.html
+/// </summary>
+[System.Serializable]
+public class JSONGameMetrics
+{
+    public float time;
+    public float dragonKilledTime;
+    public float agentPickedKeyTime;
+    public float agentExitTime;
+    
+}
+
 
 public class PushAgentEscape : Agent
 {
@@ -20,6 +37,27 @@ public class PushAgentEscape : Agent
         MyKey.SetActive(false);
         IHaveAKey = false;
     }
+
+
+    //smc
+    //custom time logging object
+    JSONGameMetrics jsonObject = new JSONGameMetrics();
+
+    //adjust path accordingly
+    string path = "CM3070-project-code/custom-metrics-results/run1.json";
+
+    //save results to JSON file
+    private void writeToFile(){
+        //current simulation time
+        jsonObject.time = Time.time;
+        
+        //convert JSON object into string, for writing to a file
+        string json = JsonUtility.ToJson(jsonObject);
+
+        // append current JSON data to file
+        File.AppendAllText(path, json.ToString());
+    }
+    //emc
 
     public override void OnEpisodeBegin()
     {
@@ -86,6 +124,14 @@ public class PushAgentEscape : Agent
                 MyKey.SetActive(false);
                 IHaveAKey = false;
                 m_GameController.UnlockDoor();
+
+                //smc
+                // set time first agent exits
+                jsonObject.agentExitTime = Time.time;
+
+                //save JSON data to file
+                writeToFile();
+                //emc
             }
         }
         if (col.transform.CompareTag("dragon"))
@@ -93,6 +139,11 @@ public class PushAgentEscape : Agent
             m_GameController.KilledByBaddie(this, col);
             MyKey.SetActive(false);
             IHaveAKey = false;
+
+            //smc
+            // set time dragon killed for evaluation
+            jsonObject.dragonKilledTime = Time.time;
+            //emc
         }
         if (col.transform.CompareTag("portal"))
         {
@@ -109,6 +160,11 @@ public class PushAgentEscape : Agent
             MyKey.SetActive(true);
             IHaveAKey = true;
             col.gameObject.SetActive(false);
+
+            //smc
+            // time agent picked up key (after dragon has been killed)
+            jsonObject.agentPickedKeyTime = Time.time;      
+            //emc     
         }
     }
 
