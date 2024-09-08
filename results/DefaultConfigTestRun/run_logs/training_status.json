@@ -1,0 +1,65 @@
+{
+    "DungeonEscape": {
+        "checkpoints": [
+            {
+                "steps": 499977,
+                "file_path": "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-499977.onnx",
+                "reward": 0.0,
+                "creation_time": 1725447995.1351755,
+                "auxillary_file_paths": [
+                    "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-499977.pt"
+                ]
+            },
+            {
+                "steps": 999982,
+                "file_path": "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-999982.onnx",
+                "reward": 0.0,
+                "creation_time": 1725452516.0232809,
+                "auxillary_file_paths": [
+                    "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-999982.pt"
+                ]
+            },
+            {
+                "steps": 1499948,
+                "file_path": "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-1499948.onnx",
+                "reward": 0.0,
+                "creation_time": 1725455485.5123348,
+                "auxillary_file_paths": [
+                    "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-1499948.pt"
+                ]
+            },
+            {
+                "steps": 1999949,
+                "file_path": "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-1999949.onnx",
+                "reward": 0.0,
+                "creation_time": 1725459445.7152755,
+                "auxillary_file_paths": [
+                    "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-1999949.pt"
+                ]
+            },
+            {
+                "steps": 2183291,
+                "file_path": "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-2183291.onnx",
+                "reward": 0.0,
+                "creation_time": 1725461034.1172388,
+                "auxillary_file_paths": [
+                    "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-2183291.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2183291,
+            "file_path": "results/DefaultConfigTestRun/DungeonEscape.onnx",
+            "reward": 0.0,
+            "creation_time": 1725461034.1172388,
+            "auxillary_file_paths": [
+                "results/DefaultConfigTestRun/DungeonEscape/DungeonEscape-2183291.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.3.0"
+    }
+}
