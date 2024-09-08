@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-results = ["./defaultDungeonEscape.onnx.json", "./DungeonEscapeV2.onnx.json", "./DungeonEscapeV3.onnx.json"]
+results = ["./bt-ai-run-1.json"]
 
 for result in results:
     with open(result, encoding='utf-8') as inputfile:

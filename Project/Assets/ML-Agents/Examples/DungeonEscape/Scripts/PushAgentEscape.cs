@@ -97,9 +97,10 @@ public class PushAgentEscape : MonoBehaviour
     {
         // smc
         // randomly switch the blackboard value
-        if (Time.frameCount % 17 == 0)
+        if (Time.frameCount % 2 == 0)
         {
             ownBlackboard["agentCanMove"] = false;
+            // ownBlackboard["agentCanMove"] = true;
 
             //for debugging
             // Debug.Log("number of agents in shared blackboard: " + sharedBlackboard.Get<int>("numberOfAgents"));
@@ -129,6 +130,9 @@ public class PushAgentEscape : MonoBehaviour
         sharedBlackboard["numberOfAgents"] = sharedBlackboard.Get<int>("numberOfAgents") + 1;
 
         getDoorPosition();
+
+        //to avoid 'deadlock' bug, where agents crash into each other
+        ownBlackboard["runBoost"] = 0f;
     }
 
     //get the dragons position
@@ -143,12 +147,19 @@ public class PushAgentEscape : MonoBehaviour
     // move the agent towards the dragons position
     public void MoveAgentToDragon(Vector3 vec)
     {
-        transform.position = Vector3.MoveTowards(transform.position, vec, Time.deltaTime * 1f);
+        // transform.position = Vector3.MoveTowards(transform.position, vec, Time.deltaTime * 1f);m_PushBlockSettings.agentRunSpeed
+        transform.position = Vector3.MoveTowards(transform.position, vec, Time.deltaTime * (m_PushBlockSettings.agentRunSpeed + UnityEngine.Random.Range(1,2)));
     }
+
+    // // move agent to given vector location
+    // private void moveAgentTo(Vector3 pos){
+    //     transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * (50f + UnityEngine.Random.Range(1,20)));
+    // }
 
     // move agent to given vector location
     private void moveAgentTo(Vector3 pos){
-        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * 50f);
+        // transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * (m_PushBlockSettings.agentRunSpeed + UnityEngine.Random.Range(1,20)));
+        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * (m_PushBlockSettings.agentRunSpeed + ownBlackboard.Get<float>("runBoost")));
     }
 
     //position for agents to escape to
@@ -198,7 +209,7 @@ public class PushAgentEscape : MonoBehaviour
         
         string json = JsonUtility.ToJson(jsonObject);
 
-        File.AppendAllText("/home/yehuda/Desktop/Temp/Unity/json-file-tests/test.json", json.ToString());
+        File.AppendAllText("/home/yehuda/Desktop/Unity/CM3070-project-code/custom-metrics-results/bt-results-2.json", json.ToString());
     }
 
     //=== end my code ===//
@@ -266,6 +277,10 @@ public class PushAgentEscape : MonoBehaviour
             //smc
             //update other agents that key has been picked up
             updateAgentHasKeyStatus();
+
+            //agent picks ups get so gets to door as fast as possible
+            //to avoid 'deadlock' bug
+            ownBlackboard["runBoost"] = 2f;
 
             // time agent picked up key (after dragon has been killed)
             jsonObject.agentPickedKeyTime = Time.time;      
