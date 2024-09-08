@@ -57,6 +57,7 @@ public class PushAgentEscape : MonoBehaviour
 
 
     /// based on npbehave exampleswarmai
+    //source: https://github.com/meniku/NPBehave/blob/master/Examples/Scripts/NPBehaveExampleSwarmEnemyAI.cs
     private Root CreateBehaviourTree()
     {
         return new Root(ownBlackboard,
@@ -198,7 +199,9 @@ public class PushAgentEscape : MonoBehaviour
         
         string json = JsonUtility.ToJson(jsonObject);
 
-        File.AppendAllText("/home/yehuda/Desktop/Temp/Unity/json-file-tests/test.json", json.ToString());
+        Debug.Log(json);
+
+        File.AppendAllText("/home/yehuda/Desktop/Unity/CM3070-project-code/custom-metrics-results/results.json", json.ToString());
     }
 
     //=== end my code ===//
