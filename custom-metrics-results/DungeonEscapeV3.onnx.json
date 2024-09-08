@@ -1,1 +1,186 @@
-{"time":5.659997940063477,"dragonKilledTime":0.0,"agentPickedKeyTime":4.3599982261657719,"agentExitTime":5.659997940063477}{"time":7.859997272491455,"dragonKilledTime":0.0,"agentPickedKeyTime":6.419997692108154,"agentExitTime":7.859997272491455}{"time":12.239995956420899,"dragonKilledTime":6.139997959136963,"agentPickedKeyTime":11.079996109008789,"agentExitTime":12.239995956420899}{"time":15.459994316101075,"dragonKilledTime":8.419997215270996,"agentPickedKeyTime":13.6199951171875,"agentExitTime":15.459994316101075}{"time":20.35999298095703,"dragonKilledTime":8.419997215270996,"agentPickedKeyTime":17.439992904663087,"agentExitTime":20.35999298095703}{"time":23.439990997314454,"dragonKilledTime":15.839994430541993,"agentPickedKeyTime":22.079992294311525,"agentExitTime":23.439990997314454}{"time":28.57999038696289,"dragonKilledTime":15.839994430541993,"agentPickedKeyTime":26.69999122619629,"agentExitTime":28.57999038696289}{"time":33.0999870300293,"dragonKilledTime":26.619991302490236,"agentPickedKeyTime":29.499990463256837,"agentExitTime":33.0999870300293}{"time":42.69998550415039,"dragonKilledTime":28.89999008178711,"agentPickedKeyTime":39.99998474121094,"agentExitTime":42.69998550415039}{"time":45.55998229980469,"dragonKilledTime":28.89999008178711,"agentPickedKeyTime":44.23998260498047,"agentExitTime":45.55998229980469}{"time":50.09998321533203,"dragonKilledTime":28.89999008178711,"agentPickedKeyTime":48.17998123168945,"agentExitTime":50.09998321533203}{"time":55.2199821472168,"dragonKilledTime":28.89999008178711,"agentPickedKeyTime":51.49998092651367,"agentExitTime":55.2199821472168}{"time":59.2399787902832,"dragonKilledTime":51.019981384277347,"agentPickedKeyTime":56.37997817993164,"agentExitTime":59.2399787902832}{"time":62.999977111816409,"dragonKilledTime":51.019981384277347,"agentPickedKeyTime":61.95997619628906,"agentExitTime":62.999977111816409}{"time":66.39997863769531,"dragonKilledTime":55.97998046875,"agentPickedKeyTime":64.75997924804688,"agentExitTime":66.39997863769531}{"time":69.31997680664063,"dragonKilledTime":55.97998046875,"agentPickedKeyTime":67.21997833251953,"agentExitTime":69.31997680664063}{"time":72.55997467041016,"dragonKilledTime":55.97998046875,"agentPickedKeyTime":71.4999771118164,"agentExitTime":72.55997467041016}{"time":132.8999481201172,"dragonKilledTime":73.15997314453125,"agentPickedKeyTime":129.9999542236328,"agentExitTime":132.8999481201172}{"time":137.43995666503907,"dragonKilledTime":73.15997314453125,"agentPickedKeyTime":136.33995056152345,"agentExitTime":137.43995666503907}{"time":141.43995666503907,"dragonKilledTime":133.6199493408203,"agentPickedKeyTime":138.85995483398438,"agentExitTime":141.43995666503907}{"time":151.37994384765626,"dragonKilledTime":138.37994384765626,"agentPickedKeyTime":148.97994995117188,"agentExitTime":151.37994384765626}{"time":166.99993896484376,"dragonKilledTime":142.53994750976563,"agentPickedKeyTime":164.93994140625,"agentExitTime":166.99993896484376}{"time":172.2399444580078,"dragonKilledTime":154.41995239257813,"agentPickedKeyTime":170.61993408203126,"agentExitTime":172.2399444580078}{"time":179.31993103027345,"dragonKilledTime":167.77993774414063,"agentPickedKeyTime":177.0999298095703,"agentExitTime":179.31993103027345}{"time":184.23992919921876,"dragonKilledTime":173.39993286132813,"agentPickedKeyTime":181.7599334716797,"agentExitTime":184.23992919921876}{"time":187.7999267578125,"dragonKilledTime":173.39993286132813,"agentPickedKeyTime":186.0999298095703,"agentExitTime":187.7999267578125}{"time":191.0599365234375,"dragonKilledTime":173.39993286132813,"agentPickedKeyTime":189.73992919921876,"agentExitTime":191.0599365234375}{"time":197.51992797851563,"dragonKilledTime":188.89993286132813,"agentPickedKeyTime":194.77993774414063,"agentExitTime":197.51992797851563}{"time":280.659912109375,"dragonKilledTime":188.89993286132813,"agentPickedKeyTime":277.2799072265625,"agentExitTime":280.659912109375}{"time":283.33990478515627,"dragonKilledTime":276.19989013671877,"agentPickedKeyTime":282.45989990234377,"agentExitTime":283.33990478515627}{"time":288.659912109375,"dragonKilledTime":285.2598876953125,"agentPickedKeyTime":288.139892578125,"agentExitTime":288.659912109375}{"time":295.0398864746094,"dragonKilledTime":287.7799072265625,"agentPickedKeyTime":293.3798828125,"agentExitTime":295.0398864746094}{"time":301.139892578125,"dragonKilledTime":287.7799072265625,"agentPickedKeyTime":298.43988037109377,"agentExitTime":301.139892578125}{"time":323.3398742675781,"dragonKilledTime":297.3598937988281,"agentPickedKeyTime":321.8798828125,"agentExitTime":323.3398742675781}{"time":326.9998779296875,"dragonKilledTime":297.3598937988281,"agentPickedKeyTime":326.3798828125,"agentExitTime":326.9998779296875}{"time":334.07989501953127,"dragonKilledTime":304.6799011230469,"agentPickedKeyTime":331.4598693847656,"agentExitTime":334.07989501953127}{"time":349.4998779296875,"dragonKilledTime":297.3598937988281,"agentPickedKeyTime":347.7198791503906,"agentExitTime":349.4998779296875}
+[{
+    "time": 5.659997940063477,
+    "dragonKilledTime": 0.0,
+    "agentPickedKeyTime": 4.3599982261657719,
+    "agentExitTime": 5.659997940063477
+}, {
+    "time": 7.859997272491455,
+    "dragonKilledTime": 0.0,
+    "agentPickedKeyTime": 6.419997692108154,
+    "agentExitTime": 7.859997272491455
+}, {
+    "time": 12.239995956420899,
+    "dragonKilledTime": 6.139997959136963,
+    "agentPickedKeyTime": 11.079996109008789,
+    "agentExitTime": 12.239995956420899
+}, {
+    "time": 15.459994316101075,
+    "dragonKilledTime": 8.419997215270996,
+    "agentPickedKeyTime": 13.6199951171875,
+    "agentExitTime": 15.459994316101075
+}, {
+    "time": 20.35999298095703,
+    "dragonKilledTime": 8.419997215270996,
+    "agentPickedKeyTime": 17.439992904663087,
+    "agentExitTime": 20.35999298095703
+}, {
+    "time": 23.439990997314454,
+    "dragonKilledTime": 15.839994430541993,
+    "agentPickedKeyTime": 22.079992294311525,
+    "agentExitTime": 23.439990997314454
+}, {
+    "time": 28.57999038696289,
+    "dragonKilledTime": 15.839994430541993,
+    "agentPickedKeyTime": 26.69999122619629,
+    "agentExitTime": 28.57999038696289
+}, {
+    "time": 33.0999870300293,
+    "dragonKilledTime": 26.619991302490236,
+    "agentPickedKeyTime": 29.499990463256837,
+    "agentExitTime": 33.0999870300293
+}, {
+    "time": 42.69998550415039,
+    "dragonKilledTime": 28.89999008178711,
+    "agentPickedKeyTime": 39.99998474121094,
+    "agentExitTime": 42.69998550415039
+}, {
+    "time": 45.55998229980469,
+    "dragonKilledTime": 28.89999008178711,
+    "agentPickedKeyTime": 44.23998260498047,
+    "agentExitTime": 45.55998229980469
+}, {
+    "time": 50.09998321533203,
+    "dragonKilledTime": 28.89999008178711,
+    "agentPickedKeyTime": 48.17998123168945,
+    "agentExitTime": 50.09998321533203
+}, {
+    "time": 55.2199821472168,
+    "dragonKilledTime": 28.89999008178711,
+    "agentPickedKeyTime": 51.49998092651367,
+    "agentExitTime": 55.2199821472168
+}, {
+    "time": 59.2399787902832,
+    "dragonKilledTime": 51.019981384277347,
+    "agentPickedKeyTime": 56.37997817993164,
+    "agentExitTime": 59.2399787902832
+}, {
+    "time": 62.999977111816409,
+    "dragonKilledTime": 51.019981384277347,
+    "agentPickedKeyTime": 61.95997619628906,
+    "agentExitTime": 62.999977111816409
+}, {
+    "time": 66.39997863769531,
+    "dragonKilledTime": 55.97998046875,
+    "agentPickedKeyTime": 64.75997924804688,
+    "agentExitTime": 66.39997863769531
+}, {
+    "time": 69.31997680664063,
+    "dragonKilledTime": 55.97998046875,
+    "agentPickedKeyTime": 67.21997833251953,
+    "agentExitTime": 69.31997680664063
+}, {
+    "time": 72.55997467041016,
+    "dragonKilledTime": 55.97998046875,
+    "agentPickedKeyTime": 71.4999771118164,
+    "agentExitTime": 72.55997467041016
+}, {
+    "time": 132.8999481201172,
+    "dragonKilledTime": 73.15997314453125,
+    "agentPickedKeyTime": 129.9999542236328,
+    "agentExitTime": 132.8999481201172
+}, {
+    "time": 137.43995666503907,
+    "dragonKilledTime": 73.15997314453125,
+    "agentPickedKeyTime": 136.33995056152345,
+    "agentExitTime": 137.43995666503907
+}, {
+    "time": 141.43995666503907,
+    "dragonKilledTime": 133.6199493408203,
+    "agentPickedKeyTime": 138.85995483398438,
+    "agentExitTime": 141.43995666503907
+}, {
+    "time": 151.37994384765626,
+    "dragonKilledTime": 138.37994384765626,
+    "agentPickedKeyTime": 148.97994995117188,
+    "agentExitTime": 151.37994384765626
+}, {
+    "time": 166.99993896484376,
+    "dragonKilledTime": 142.53994750976563,
+    "agentPickedKeyTime": 164.93994140625,
+    "agentExitTime": 166.99993896484376
+}, {
+    "time": 172.2399444580078,
+    "dragonKilledTime": 154.41995239257813,
+    "agentPickedKeyTime": 170.61993408203126,
+    "agentExitTime": 172.2399444580078
+}, {
+    "time": 179.31993103027345,
+    "dragonKilledTime": 167.77993774414063,
+    "agentPickedKeyTime": 177.0999298095703,
+    "agentExitTime": 179.31993103027345
+}, {
+    "time": 184.23992919921876,
+    "dragonKilledTime": 173.39993286132813,
+    "agentPickedKeyTime": 181.7599334716797,
+    "agentExitTime": 184.23992919921876
+}, {
+    "time": 187.7999267578125,
+    "dragonKilledTime": 173.39993286132813,
+    "agentPickedKeyTime": 186.0999298095703,
+    "agentExitTime": 187.7999267578125
+}, {
+    "time": 191.0599365234375,
+    "dragonKilledTime": 173.39993286132813,
+    "agentPickedKeyTime": 189.73992919921876,
+    "agentExitTime": 191.0599365234375
+}, {
+    "time": 197.51992797851563,
+    "dragonKilledTime": 188.89993286132813,
+    "agentPickedKeyTime": 194.77993774414063,
+    "agentExitTime": 197.51992797851563
+}, {
+    "time": 280.659912109375,
+    "dragonKilledTime": 188.89993286132813,
+    "agentPickedKeyTime": 277.2799072265625,
+    "agentExitTime": 280.659912109375
+}, {
+    "time": 283.33990478515627,
+    "dragonKilledTime": 276.19989013671877,
+    "agentPickedKeyTime": 282.45989990234377,
+    "agentExitTime": 283.33990478515627
+}, {
+    "time": 288.659912109375,
+    "dragonKilledTime": 285.2598876953125,
+    "agentPickedKeyTime": 288.139892578125,
+    "agentExitTime": 288.659912109375
+}, {
+    "time": 295.0398864746094,
+    "dragonKilledTime": 287.7799072265625,
+    "agentPickedKeyTime": 293.3798828125,
+    "agentExitTime": 295.0398864746094
+}, {
+    "time": 301.139892578125,
+    "dragonKilledTime": 287.7799072265625,
+    "agentPickedKeyTime": 298.43988037109377,
+    "agentExitTime": 301.139892578125
+}, {
+    "time": 323.3398742675781,
+    "dragonKilledTime": 297.3598937988281,
+    "agentPickedKeyTime": 321.8798828125,
+    "agentExitTime": 323.3398742675781
+}, {
+    "time": 326.9998779296875,
+    "dragonKilledTime": 297.3598937988281,
+    "agentPickedKeyTime": 326.3798828125,
+    "agentExitTime": 326.9998779296875
+}, {
+    "time": 334.07989501953127,
+    "dragonKilledTime": 304.6799011230469,
+    "agentPickedKeyTime": 331.4598693847656,
+    "agentExitTime": 334.07989501953127
+}, {
+    "time": 349.4998779296875,
+    "dragonKilledTime": 297.3598937988281,
+    "agentPickedKeyTime": 347.7198791503906,
+    "agentExitTime": 349.4998779296875
+}]
